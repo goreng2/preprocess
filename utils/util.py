@@ -1,9 +1,10 @@
 from tqdm import tqdm
 from typing import List
 import os
+import json
 
 
-def load(path: str) -> List[str]:
+def load_text(path: str) -> List[str]:
     """
     파일 불러오기
     :param path: 파일 경로
@@ -13,10 +14,17 @@ def load(path: str) -> List[str]:
     with open(path, "r", encoding="utf-8") as f:
         for line in tqdm(f.readlines(), desc="Loading..."):
             line = line.strip()  # 개행("\n") 제거
-            if line:  # 공백이 아닌 line만 저장
+            if line:  # 공백이 아닌 텍스트만 저장
                 result.append(line)
             else:
                 continue
+
+    return result
+
+
+def load_json(path: str):
+    with open(path, 'r', encoding='utf-8') as f:
+        result = json.load(f)
 
     return result
 
