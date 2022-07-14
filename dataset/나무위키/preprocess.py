@@ -1,7 +1,9 @@
+from pprint import pprint
 from utils import util, common_process
 import argparse
 from multiprocessing import Pool
 from time import time
+import os
 
 
 def process(text: str) -> str:
@@ -21,8 +23,8 @@ def process(text: str) -> str:
 def main(input_path: str, output_path: str, num_processor: int):
     # 파일 불러오기
     print(f"Load File... \"{input_path}\"")
-    lines = util.load(input_path)
-    print(f"{len(lines):,} lines")
+    lines = util.load_text(input_path)
+    print(f"Total {len(lines):,} lines")
 
     # 병렬 전처리
     print("Start Preprocess!")
@@ -35,7 +37,7 @@ def main(input_path: str, output_path: str, num_processor: int):
 
     # None값 필터링
     result = [i for i in result if i]  # 어절 개수에서 필터링 된 None값 제거
-    print(f"{len(result):,} lines (- {len(lines) - len(result):,} lines)")
+    print(f"Total {len(result):,} lines (- {len(lines) - len(result):,} lines)")
 
     # 전처리 결과 저장
     print(f"Save Result... \"{output_path}\"")
@@ -44,9 +46,10 @@ def main(input_path: str, output_path: str, num_processor: int):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="나무위키 전처리")
-    parser.add_argument("--src", type=str, help="원본 텍스트 파일 경로")
-    parser.add_argument("--dst", type=str, help="전처리 텍스트 파일 저장 경로")
-    parser.add_argument("--processor", type=int, help="사용할 병렬처리 CPU 코어 개수")
+    parser.add_argument("-i", "--input", type=str, required=True, help="원본 텍스트 파일 경로")
+    parser.add_argument("-o", "--output", type=str, required=True, help="전처리 텍스트 파일 저장 경로")
+    parser.add_argument("-n", "--num_process", type=int, required=True, help="사용할 병렬처리 CPU 코어 개수")
     args = parser.parse_args()
+    pprint(vars(args))  # 설정값 확인
 
-    main(args.src, args.dst, args.processor)
+    main(*vars(args).values())
