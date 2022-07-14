@@ -21,6 +21,11 @@ def process(text: str) -> str:
 
 
 def main(input_path: str, output_path: str, num_processor: int):
+    # 설정값 검토
+    assert os.path.isfile(input_path) and not os.path.isdir(output_path), "I/O 파일 경로 확인"
+    assert num_processor < os.cpu_count(), f"총 CPU 개수 초과: {num_processor} > {os.cpu_count()}"
+    assert num_processor < len(os.sched_getaffinity(0)), f"사용 가능한 CPU 개수 초과: {num_processor} > {len(os.sched_getaffinity(0))}"  # 윈도우에선 에러 발생: module 'os' has no attribute 'sched_getaffinity'
+
     # 파일 불러오기
     print(f"Load File... \"{input_path}\"")
     lines = util.load_text(input_path)
