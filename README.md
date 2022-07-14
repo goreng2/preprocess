@@ -10,12 +10,9 @@ $ pip install -r requirements.txt
 ### 나무위키
 #### 도움말
 ```
-$ python dataset/나무위키/preprocess.py --help
+$ python dataset/나무위키/extract.py -h
+$ python dataset/나무위키/preprocess.py -h
 ```
-#### 사용 예시
-```
-$ python dataset/나무위키/preprocess.py
-    --src dataset/나무위키/namuwiki-210301-part1.txt
-    --dst dataset/나무위키/result.txt
-    --processor 6
-```
+
+## Reference
+- [Namu Wiki Extractor](https://github.com/jonghwanhyeon/namu-wiki-extractor)
