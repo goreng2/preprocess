@@ -7,5 +7,5 @@ python -m wikiextractor.WikiExtractor /data/nlp/dataset_raw/위키백과/kowiki-
 echo "Create kowiki.txt"
 mv ${OUTPUT}/kowiki/AA/wiki_00 ${OUTPUT}/kowiki.txt
 
-echo "Remove ~/kowiki directory"
+echo "Remove ${OUTPUT}/kowiki directory"
 rm -rf ${OUTPUT}/kowiki
