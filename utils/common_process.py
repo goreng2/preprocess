@@ -92,7 +92,7 @@ def filter_length(text: str, min_limit: int):
     최소 어절 개수 필터링
     :param text: 원문 텍스트
     :param min_limit: 최소 어절 개수
-    :return: 필터링 결과
+    :return: 텍스트 혹은 None
     """
     if len(text.split()) >= min_limit:
         return text
