@@ -1,4 +1,5 @@
 import re
+from typing import Optional
 
 
 def uniformize(text: str) -> str:
@@ -87,7 +88,7 @@ def normalize_space(text: str) -> str:
     return text
 
 
-def filter_length(text: str, min_limit: int):
+def filter_length(text: str, min_limit: int) -> Optional[str]:
     """
     최소 어절 개수 필터링
     :param text: 원문 텍스트
