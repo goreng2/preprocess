@@ -9,18 +9,34 @@ $ pip install -r requirements.txt
 ## Usage
 ### 나무위키
 ```
+# 텍스트 추출
 $ python dataset/나무위키/extract.py -h
-```
-```
-$ python dataset/나무위키/preprocess.py -h
+
+# 전처리
+$ python dataset/나무위키/process.py -h
 ```
 ### 한국어 위키백과
-`extract.sh`의 경우 Linux에서만 동작하며, 윈도우에서 테스트 시 [`ValueError: cannot find context for 'fork'`](https://github.com/attardi/wikiextractor/issues/287) 발생
 ```
+# 텍스트 추출
 $ bash dataset/위키백과/extract.sh
-```
-```
+
+# 전처리
 $ python dataset/위키백과/preprocess.py -h
+```
+`extract.sh`의 경우 Linux에서만 동작하며, 윈도우에서 테스트 시 [`ValueError: cannot find context for 'fork'`](https://github.com/attardi/wikiextractor/issues/287) 발생
+
+### 유틸
+#### train/test split
+```
+$ python utils/split.py -h
+```
+#### shard
+```
+# 변수 설정
+$ vi utils/shard.sh
+
+# 실행
+$ bash utils/shard.sh
 ```
 
 ## Reference
