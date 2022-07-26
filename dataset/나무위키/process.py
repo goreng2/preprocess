@@ -19,12 +19,12 @@ def process(text: str) -> Optional[str]:
     return text
 
 
-def main(input_path: str, output_path: str, num_processor: int):
+def main(input: str, output: str, num_process: int):
     # 파일 로드
-    lines = utils.load_text(input_path)
+    lines = utils.load_text(input)
 
     # 병렬처리
-    with Pool(processes=num_processor) as p:
+    with Pool(processes=num_process) as p:
         start = time()
         result = p.map(process, lines)
         end = time()
@@ -33,7 +33,7 @@ def main(input_path: str, output_path: str, num_processor: int):
     result = [i for i in result if i]  # 어절 개수에서 필터링 된 None값 제거
 
     # 파일 저장
-    utils.save(output_path, "\n".join(result))
+    utils.save(output, "\n".join(result))
 
 
 if __name__ == '__main__':
