@@ -1,7 +1,35 @@
 from tqdm import tqdm
-from typing import List
+from typing import List, Dict, Union
 import os
 import json
+import argparse
+
+
+def parse_args() -> Dict[str, Union[str, int]]:
+    """
+    실행 프로그램의 필요 인자 받기
+    :return: {
+        'input': str,
+        'output': str,
+        'num_process': int
+    }
+    """
+    parser = argparse.ArgumentParser(description="데이터 전처리 인자 설정")
+    parser.add_argument("-i", "--input", type=str, required=True, help="입력 파일 경로")
+    parser.add_argument("-o", "--output", type=str, required=True, help="출력 파일 경로")
+    parser.add_argument("-n", "--num_process", type=int, required=True, help="사용할 병렬처리 CPU 코어 개수")
+    args = parser.parse_args()
+
+    # 설정값 확인
+    for k, v in vars(args).items():
+        print(f"{k}: {v}")
+
+    # 설정값 검토
+    # i, o, n = vars(args).values()
+    # assert os.path.isfile(i) and not os.path.isdir(o), "input이 파일인지 확인, output이 폴더가 아닌지 확인"
+    # assert n < os.cpu_count(), f"총 CPU 개수 초과: {n} > {os.cpu_count()}"
+
+    return vars(args)
 
 
 def load_text(path: str) -> List[str]:
