@@ -15,22 +15,20 @@ def process(text: str) -> List[Optional[str]]:
     :param text: 원본 텍스트
     :return: 전처리 된 텍스트
     """
-    if re.search("<.+>", text):  # 헤더 필터링
-        return []
-    else:
-        text = common_process.uniformize(text)  # 특수문자를 일반문자로 변환
-        text = common_process.filter_text(text)  # 불필요한 문자 제거
-        text = re.sub(r"(, ){2,}|\(, \)", "", text)  # 불필요한 문자 제거 후 나열된 쉼표 제거
-        text = re.sub(r"[\(\{\[]\s*[\)\}\]]", "", text)  # 내용없는 괄호(){}[] 삭제
-        text = common_process.normalize_space(text)  # 2개 이상 공백을 1개 띄어쓰기로 정규화
-        sents = split_sentences(text)  # 문장 분리
+    text = common_process.uniformize(text)  # 특수문자를 일반문자로 변환
+    text = common_process.filter_text(text)  # 불필요한 문자 제거
+    text = re.sub(r"(, ){2,}|\(, \)", "", text)  # 불필요한 문자 제거 후 나열된 쉼표 제거
+    text = re.sub(r"[\(\{\[]\s*[\)\}\]]", "", text)  # 내용없는 괄호(){}[] 삭제
+    text = common_process.normalize_space(text)  # 2개 이상 공백을 1개 띄어쓰기로 정규화
+    sents = split_sentences(text)  # 문장 분리
 
-        return sents
+    return sents
 
 
 def main(input: str, output: str, num_process: int):
     # 파일 로드
     lines = utils.load_text(input)
+    lines = [line for line in lines if not re.search("<.+>", line)]  # 헤더 필터링
 
     # 병렬 전처리
     result = []
