@@ -64,7 +64,7 @@ def save(path: str, text: str) -> None:
     :param text: 저장할 파일 내용
     """
     dirname = os.path.dirname(path)  # 폴더 경로 파싱
-    if dirname:  # 폴더 경로가 있을 경우
+    if dirname:  # 만들어야 할 폴더 경로가 있을 경우
         os.makedirs(dirname, exist_ok=True)  # 해당 폴더 경로 생성
     else:
         pass
