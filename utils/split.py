@@ -23,8 +23,8 @@ def main(input: str, percent: float):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="train/test split")
-    parser.add_argument("-i", "--input", type=str, required=True, help="dataset")
-    parser.add_argument("-p", "--percent", type=float, required=True, help="test-set percentage (0~1)")
+    parser.add_argument("-i", "--input", type=str, required=True, help="path/to/corpus.txt")
+    parser.add_argument("-p", "--percent", type=float, default=0.1, help="test-set percentage (0~1)")
     args = parser.parse_args()
 
     main(**vars(args))
