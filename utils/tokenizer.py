@@ -21,10 +21,9 @@ def get_vocab(path: str) -> Dict[str, int]:
 
 def tokenize(text: str, vocab: Dict[str, int]) -> List[str]:
     total_tokens = []
-    words = text.split()
+    words = text.strip().split()
     for word in words:
         start = 0
-        is_unk = False
         tokens = []
         while start < len(word):
             end = len(word)
@@ -33,21 +32,22 @@ def tokenize(text: str, vocab: Dict[str, int]) -> List[str]:
                 _token = "".join(word[start:end])
                 if start > 0:
                     _token = "▁" + _token
+
                 if _token in vocab:
                     token = _token
                     break
-                end -= 1
+                else:
+                    end -= 1
 
             if token is None:
-                is_unk = True
+                token = "[UNK]"
+                tokens.append(token)
                 break
-            tokens.append(token)
-            start = end
+            else:
+                tokens.append(token)
+                start = end
 
-        if is_unk:
-            total_tokens.append("[UNK]")
-        else:
-            total_tokens.extend(tokens)
+        total_tokens.extend(tokens)
 
     return total_tokens
 
