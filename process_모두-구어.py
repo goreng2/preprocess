@@ -1,5 +1,5 @@
 from multiprocessing import Pool
-from utils import utils, common_process
+from util import utils, common_process
 from time import time
 from typing import Optional
 from kss import split_sentences

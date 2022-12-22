@@ -1,6 +1,6 @@
 from multiprocessing import Pool
+from util import utils
 from glob import glob
-from utils import utils
 import os
 
 
@@ -11,16 +11,11 @@ def extract(file_path: str) -> str:
     :return: 한 줄 텍스트
     """
     contents = utils.load_json(file_path)
-    docs = contents["document"]
-
-    forms = []
-    for doc in docs:
-        paras = doc["paragraph"]
-        for para in paras:
-            form = para["form"]
-            forms.append(form)
-
-    text = "\n".join(forms)
+    document = contents["document"]
+    assert len(document) == 1, "Document가 복수개입니다."
+    paras = document[0]["paragraph"]
+    form = [para["form"] for para in paras]
+    text = "\n".join(form)
 
     return text
 
@@ -37,6 +32,6 @@ def main(input: str, output: str, num_process: int):
     utils.save(output, "\n".join(result))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     args = utils.parse_args()
     main(**args)

@@ -1,5 +1,5 @@
 from multiprocessing import Pool
-from utils import utils
+from util import utils
 from time import time
 from typing import Dict, Any
 from namuwiki.extractor import extract_text

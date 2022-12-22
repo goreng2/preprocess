@@ -1,5 +1,5 @@
 from multiprocessing import Pool
-from utils import utils
+from util import utils
 from glob import glob
 import os
 from collections import defaultdict

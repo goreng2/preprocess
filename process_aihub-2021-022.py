@@ -1,5 +1,5 @@
 from multiprocessing import Pool
-from utils import utils, common_process
+from util import utils, common_process
 from time import time
 from typing import Optional
 from kss import split_sentences
@@ -20,13 +20,13 @@ def process(text: str) -> Optional[str]:
     text = common_process.normalize_space(text)  # 2개 이상 공백을 1개 띄어쓰기로 정규화
 
     # "..." 혹은 '...', (...) 형식의 문장에서 테두리를 제거하고 ...만 남김
-    if text.startswith(('"', "'", "(")) and\
-            text.endswith(('"', "'", ")")):
+    if text.startswith(('"', "'", "(", "<")) and\
+            text.endswith(('"', "'", ")", ">")):
         text = text[1:-1]
 
-    sents = split_sentences(text)  # 문장 분리
+    # sents = split_sentences(text)  # 문장 분리
 
-    return sents
+    return [text]
 
 
 def main(input: str, output: str, num_process: int):

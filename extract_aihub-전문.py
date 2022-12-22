@@ -1,6 +1,6 @@
 from multiprocessing import Pool
 import parmap
-from utils import utils
+from util import utils
 from glob import glob
 import os
 

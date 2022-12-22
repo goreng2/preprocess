@@ -1,5 +1,5 @@
 from multiprocessing import Pool
-from utils import utils, common_process
+from util import utils, common_process
 from time import time
 from typing import Optional
 from kss import split_sentences
@@ -24,9 +24,9 @@ def process(text: str) -> Optional[str]:
             text.endswith(('"', "'", ")", ">")):
         text = text[1:-1]
 
-    # sents = split_sentences(text)  # 문장 분리
+    sents = split_sentences(text)  # 문장 분리
 
-    return [text]
+    return sents
 
 
 def main(input: str, output: str, num_process: int):

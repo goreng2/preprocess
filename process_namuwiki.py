@@ -1,8 +1,8 @@
 from multiprocessing import Pool
-from utils import utils
+from util import utils
 from time import time
 from typing import Optional
-from utils import common_process
+from util import common_process
 
 
 def process(text: str) -> Optional[str]:
