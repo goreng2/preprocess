@@ -17,7 +17,7 @@ def parse_args() -> Dict[str, Union[str, int]]:
     parser = argparse.ArgumentParser(description="데이터 추출/처리 인자 설정")
     parser.add_argument("-i", "--input", type=str, required=True, help="입력 파일/폴더 경로")
     parser.add_argument("-o", "--output", type=str, required=True, help="출력 파일 경로")
-    parser.add_argument("-n", "--num_process", type=int, required=True, help="병렬처리 CPU 코어 개수")
+    # parser.add_argument("-n", "--num_process", type=int, required=True, help="병렬처리 CPU 코어 개수")
     args = parser.parse_args()
 
     # 설정값 확인
