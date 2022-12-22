@@ -51,8 +51,14 @@ def load_text(path: str) -> List[str]:
 
 
 def load_json(path: str):
-    with open(path, 'r', encoding='utf-8') as f:
-        result = json.load(f)
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            result = json.load(f)
+
+    # [Debug] json.decoder.JSONDecodeError: Unexpected UTF-8 BOM
+    except:
+        with open(path, 'r', encoding='utf-8-sig') as f:
+            result = json.load(f)
 
     return result
 
