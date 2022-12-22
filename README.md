@@ -1,4 +1,4 @@
-# PVo 사내 데이터 전처리기
+# PVo 사내 데이터 전처리 소스
 데이터셋 별 전처리 소스를 통합 관리합니다.
 
 ## Requirements
@@ -7,17 +7,26 @@ $ pip install -r requirements.txt
 ```
 
 ## Usage
-`dataset` 하위 폴더에서 각각의 `extract.py`, `process.py` 참고
+### Extract
+```commandline
+python extract.py -i path/to/dataset -o path/to/output.txt
+```
 - 한국어 위키백과 `extract.sh`의 경우 Linux에서만 동작하며, 윈도우에서 테스트 시 [`ValueError: cannot find context for 'fork'`](https://github.com/attardi/wikiextractor/issues/287) 발생
 
-### 유틸
-#### train/test split
+### Process
+```commandline
+python process.py -i path/to/dataset -o path/to/output.txt
 ```
-$ python utils/split.py
+
+### Utility
+#### Train / Test Split
+```commandline
+python utils/split.py
 ```
-#### shard
-```
-$ bash utils/shard.sh
+
+#### Shard
+```commandline
+bash utils/shard.sh
 ```
 
 ## Reference
