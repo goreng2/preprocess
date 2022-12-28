@@ -1,24 +1,22 @@
 # PVo 사내 데이터 전처리 소스
 데이터셋 별 전처리 소스를 통합 관리합니다.
 
+## To Do
+- [ ] [processor.py](processor.py)에 문장분리(KSS=1.3.1) 적용해야함
+
 ## Requirements
 ```
 $ pip install -r requirements.txt
 ```
 
 ## Usage
-### Extract
 ```commandline
-python extract.py -i path/to/dataset -o path/to/output.txt
+python main.py -h
 ```
-- 한국어 위키백과 `extract.sh`의 경우 Linux에서만 동작하며, 윈도우에서 테스트 시 [`ValueError: cannot find context for 'fork'`](https://github.com/attardi/wikiextractor/issues/287) 발생
+- `한국어 위키백과` 데이터셋 추출의 경우 [extract_wiki.sh](extract_wiki.sh)를 사용합니다.
+  - Linux에서만 동작하며, 윈도우에서 테스트 시 [`ValueError: cannot find context for 'fork'`](https://github.com/attardi/wikiextractor/issues/287)에러가 발생합니다.
 
-### Process
-```commandline
-python process.py -i path/to/dataset -o path/to/output.txt
-```
-
-### Utility
+### 전처리 외 유틸
 #### Train / Test Split
 ```commandline
 python utils/split.py
