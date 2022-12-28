@@ -16,15 +16,20 @@ python main.py -h
 - `한국어 위키백과` 데이터셋 추출의 경우 [extract_wiki.sh](extract_wiki.sh)를 사용합니다.
   - Linux에서만 동작하며, 윈도우에서 테스트 시 [`ValueError: cannot find context for 'fork'`](https://github.com/attardi/wikiextractor/issues/287)에러가 발생합니다.
 
-### 전처리 외 유틸
-#### Train / Test Split
+### 전처리 외 유틸 사용법
+#### Tokenizer (Vocab) 만들기
 ```commandline
-python utils/split.py
+python util/WPM.py -h
 ```
 
-#### Shard
+### Train / Test Split
 ```commandline
-bash utils/shard.sh
+python util/split.py -h
+```
+
+#### 샤딩 (2048개)
+```commandline
+bash util/shard.sh path/to/corpus.txt
 ```
 
 ## Reference
