@@ -62,7 +62,8 @@ def main(task, dataset, input, output):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--dataset", choices=["aihub-special", "aihub-law", "police",
-                                                    "aihub-2021-022", "aihub-2021-030"])
+                                                    "aihub-2021-022", "aihub-2021-030", "namuwiki", "wiki",
+                                                    "modu-talk", "modu-write", "modu-news", "modu-life"])
     parser.add_argument("-t", "--task", choices=["extract", "process"])
     parser.add_argument("-i", "--input", type=str, required=True, help="path/to/dataset_root_dir_path")
     parser.add_argument("-o", "--output", type=str, required=True, help="path/to/output.txt")
