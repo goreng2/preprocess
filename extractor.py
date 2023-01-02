@@ -138,19 +138,24 @@ class Aihub법률규정Extractor(BaseExtractor):
 
 class Aihub2021022Extractor(BaseExtractor):
     def extract(self, path):
-        json_body = load_json(path)
         sents = []
-        passage = json_body["Meta(Refine)"]["passage"].split("\n")
-        sents.extend(passage)
 
+        # Meta(Refine)/passage 추출
+        json_body = load_json(path)
+        sents.append(json_body["Meta(Refine)"]["passage"].replace("\n", " "))
+
+        # Annotation/summary1 추출
         annotation = json_body["Annotation"]
-        smry1 = annotation["summary1"]
-        sents.append(smry1)
+        sents.append(annotation["summary1"])
 
-        cls = path.split("/")[-2]
-        if cls == "20per":
+        dir_name = path.split("/")[-2]
+        # 상위 폴더가 '20per'일 때
+        if dir_name == "20per":
+            # Annotation/summary3 추출
             sents.append(annotation["summary3"])
-        else:  # 2~3sent
+        # 상위 폴더가 '2~3sent'일 때
+        else:
+            # Annotation/summary2 추출
             sents.append(annotation["summary2"])
 
         text = "\n".join(sents)
