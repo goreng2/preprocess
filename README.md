@@ -3,6 +3,7 @@
 
 ## To Do
 - [ ] [processor.py](processor.py)에 문장분리(KSS=1.3.1) 적용해야함
+- [ ] 데이터셋 extract, process 추가하는 법 자세히
 
 ## Requirements
 ```
